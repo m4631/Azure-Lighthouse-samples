@@ -1,1 +1,1 @@
-<img src="https://aka.ms/deploytoazurebutton"/>
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fm4631%2FAzure-Lighthouse-samples%2Fpatch-1%2Ftemplates%2Fdelegated-resource-management%2FGov%2FdelegatedResourceManagement.json)
