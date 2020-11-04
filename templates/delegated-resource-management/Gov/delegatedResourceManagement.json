@@ -6,10 +6,10 @@
     "variables": {
         "mspOfferName": "PRITS-Gov",
         "mspOfferDescription": "PRITS Governance for PR Gov agencies",
-        "managedByTenantId": "7418f19a-ab00-4066-aa60-8941365a1083",
+        "managedByTenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47",
         "authorizations": [
                 { 
-                    "principalId": "ee8f6d35-15f2-4252-b1b8-591358e8a244", 
+                    "principalId": "3a9f1b8d-3ddc-49da-8a39-40baa39e4d29", 
                     "roleDefinitionId": "acdd72a7-3385-48ef-bd42-f606fba81ae7",
                     "principalIdDisplayName": "Lighthouse Group" 
                 }
