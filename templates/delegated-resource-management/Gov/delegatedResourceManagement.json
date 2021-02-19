@@ -2,20 +2,45 @@
     "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "mspOfferName": {
+            "type": "string",
+            "metadata": {
+                "description": "Specify a unique name for your offer"
+            },
+            "defaultValue": "PRITS Governance"
+
+        },
+        "mspOfferDescription": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the Managed Service Provider offering"
+            },
+            "defaultValue": "Unified and Digital Government"
+        },
+        "managedByTenantId": {
+            "type": "string",
+            "metadata": {
+                "description": "Specify the tenant id of the Managed Service Provider"
+            },
+            "defaultValue": "7418f19a-ab00-4066-aa60-8941365a1083"
+        },
+        "authorizations": {
+            "type": "array",
+            "metadata": {
+                "description": "Specify an array of objects, containing tuples of Azure Active Directory principalId, a Azure roleDefinitionId, and an optional principalIdDisplayName. The roleDefinition specified is granted to the principalId in the provider's Active Directory and the principalIdDisplayName is visible to customers."
+            },
+            "defaultValue": [
+                { 
+                    "principalId": "ee8f6d35-15f2-4252-b1b8-591358e8a244", 
+                    "roleDefinitionId": "b24988ac-6180-42a0-ab88-20f7382dd24c",
+                    "principalIdDisplayName": "PRITS_Group" 
+                }
+            ]
+        }              
     },
     "variables": {
-        "mspOfferName": "PRITS-Gov",
-        "mspOfferDescription": "PRITS Governance for PR Gov agencies",
-        "managedByTenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47",
-        "authorizations": [
-                { 
-                    "principalId": "3a9f1b8d-3ddc-49da-8a39-40baa39e4d29", 
-                    "roleDefinitionId": "acdd72a7-3385-48ef-bd42-f606fba81ae7",
-                    "principalIdDisplayName": "Lighthouse Group" 
-                }
-            ],
-        "mspRegistrationName": "[guid(variables('mspOfferName'))]",
-        "mspAssignmentName": "[guid(variables('mspOfferName'))]"
+        "mspRegistrationName": "[guid(parameters('mspOfferName'))]",
+        "mspAssignmentName": "[guid(parameters('mspOfferName'))]"
     },
     "resources": [
         {
@@ -23,10 +48,10 @@
             "apiVersion": "2019-09-01",
             "name": "[variables('mspRegistrationName')]",
             "properties": {
-                "registrationDefinitionName": "[variables('mspOfferName')]",
-                "description": "[variables('mspOfferDescription')]",
-                "managedByTenantId": "[variables('managedByTenantId')]",
-                "authorizations": "[variables('authorizations')]"
+                "registrationDefinitionName": "[parameters('mspOfferName')]",
+                "description": "[parameters('mspOfferDescription')]",
+                "managedByTenantId": "[parameters('managedByTenantId')]",
+                "authorizations": "[parameters('authorizations')]"
             }
         },
         {
@@ -44,11 +69,11 @@
     "outputs": {
         "mspOfferName": {
             "type": "string",
-            "value": "[concat('Managed by', ' ', variables('mspOfferName'))]"
+            "value": "[concat('Managed by', ' ', parameters('mspOfferName'))]"
         },
         "authorizations": {
             "type": "array",
-            "value": "[variables('authorizations')]"
+            "value": "[parameters('authorizations')]"
         }
     }
 }
